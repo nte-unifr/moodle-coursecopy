@@ -1,9 +1,9 @@
 <?php
 
 /*
-Author : 					Fr�d�ric Aebi
+Author : 					Frédéric Aebi
 Date creation : 			08.02.2011
-Date last modification : 	23.02.2011
+Date last modification : 	23.03.2018
 Description :				Archive object class : used to display archives_run page
 */
 
@@ -48,7 +48,7 @@ DEFINING CLASS ATTRIBUTES
 /*****************************************************************************
 CONSTRUCTOR
 *****************************************************************************/
-	public function Archive($step, $year_text, $spr_s, $aut_s, $two_s, $hidden, $archived) {
+    public function __construct($step, $year_text, $spr_s, $aut_s, $two_s, $hidden, $archived) {
 		$this->page_step = $step;
 		$this->archive_category_id = ARCHIVE_CATEGORY;
 		$this->fullname_args = array();
