@@ -7,7 +7,6 @@ Date last modification : 	23.05.2012
 Description :				archives_request_pending.php file
 */
 define('PAGE_TITLE', 'Moodle 2.0 Test @ NTE');
-define('ARCHIVE_CATEGORY', 75);
 define('COURSE_CONTEXT_LEVEL', 50);
 define('TEACHER_ROLE_ID', 3);
 define('TEACHERROLES', '3,4,9');
@@ -56,7 +55,7 @@ if (!empty($approved_courses)) {
 			$new_category = $courses_to_duplicate[$key]->category;
 			// If the course has been archived before, we need to get the category
 			// that it had before the archivation.
-			if ($new_category == ARCHIVE_CATEGORY) {
+			if ($new_category == $CFG->archive_category) {
 				$prev_archived_course = $DB->get_record("nte_archives", array("archivedcourseid" => $key));
 				if ($prev_archived_course) {
 					$new_category = $prev_archived_course->archivedcategoryid;

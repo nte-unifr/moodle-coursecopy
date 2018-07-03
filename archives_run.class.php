@@ -11,7 +11,6 @@ Description :				Archive object class : used to display archives_run page
 DEFINING CONSTANTS
 *****************************************************************************/
 
-define('ARCHIVE_CATEGORY', 75);
 define('YEAR', date("Y", time()));
 define('SUBYEAR', substr(YEAR, strlen(YEAR)-2, strlen(YEAR)));
 
@@ -49,8 +48,9 @@ DEFINING CLASS ATTRIBUTES
 CONSTRUCTOR
 *****************************************************************************/
     public function __construct($step, $year_text, $spr_s, $aut_s, $two_s, $hidden, $archived) {
+        global $CFG;
 		$this->page_step = $step;
-		$this->archive_category_id = ARCHIVE_CATEGORY;
+		$this->archive_category_id = $CFG->archive_category;
 		$this->fullname_args = array();
 
 		// Affect values using private setters
@@ -105,6 +105,9 @@ DISPLAY FUNCTIONS
 	}
 
 	private function displaySelectionForm() {
+
+        global $CFG;
+
 		// Begin form
 		echo "<form method='post' action=''>";
 		echo "<input type='hidden' name='step' value='".PAGE_STEP_2."'>";
@@ -122,7 +125,7 @@ DISPLAY FUNCTIONS
 		// Begin table rows
 		echo "<tr>";
 		echo "<td class='odd'>Archive category ID id</td>";
-		echo "<td class='odd'>".ARCHIVE_CATEGORY."</td>";
+		echo "<td class='odd'>".$CFG->archive_category."</td>";
 		echo "</tr>";
 
 		echo "<tr>";
@@ -228,7 +231,7 @@ DISPLAY FUNCTIONS
 			else
 				$style .= " class='odd'";
 
-			if ($course->category == ARCHIVE_CATEGORY) {
+			if ($course->category == $CFG->archive_category) {
 				$style .= " style='color:#999;'";
 				$category_title = "ARCHIVED";
 			} else
@@ -284,7 +287,7 @@ DISPLAY FUNCTIONS
 	}
 
 	private function displayArchivationConfirmation() {
-		global $DB;
+		global $DB, $CFG;
 		$rs = optional_param_array('COURSE_TO_ARCHIVE', NULL, PARAM_RAW);
 
 		echo "The following courses have been successfully archived :<br/>";
@@ -307,7 +310,7 @@ DISPLAY FUNCTIONS
 			UPDATE the course to archive with category ID 80 (archived courses)
 			into the course table of the database.
 			*/
-			$course->category = ARCHIVE_CATEGORY;
+			$course->category = $CFG->archive_category;
 			$update_result = $DB->update_record('course', $course);
 
 			echo "<li>".$course->fullname."</li>";
@@ -375,6 +378,8 @@ MISC FUNCTIONS
 
 	// Generation of the query depending on the selection of user on STEP 1
 	private function getSQLQuery() {
+        global $CFG;
+
 		$sql = "SELECT * FROM {course} ";
 		$close = "WHERE (";
 
@@ -404,7 +409,7 @@ MISC FUNCTIONS
 		$close = "AND";
 
 		if ($this->display_archived_courses == FALSE)
-			$sql .= $close." category <> '".ARCHIVE_CATEGORY."' ";
+			$sql .= $close." category <> '".$CFG->archive_category."' ";
 
 		return $sql;
 	}
