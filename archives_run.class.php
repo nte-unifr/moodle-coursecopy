@@ -1,7 +1,7 @@
 <?php
 
 /*
-Author : 					aFrédéric Aebi
+Author : 					Frédéric Aebi
 Date creation : 			08.02.2011
 Date last modification : 	23.03.2018
 Description :				Archive object class : used to display archives_run page
