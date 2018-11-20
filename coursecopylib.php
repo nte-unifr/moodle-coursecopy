@@ -14,7 +14,7 @@ function strpos_array($haystack, $needles) {
 				$pos = strpos_array($haystack, $str);
 			else
 				$pos = strpos($haystack, $str);
-			
+
 			if ($pos !== FALSE)
 				return $pos;
 		}
@@ -48,7 +48,7 @@ echo "<script language='javascript'>function auto_checkbox(key){if(document.getE
 ?>
 
 
-<!-- 
+<!--
 The following script is needed to generate new course names automatically
 -->
 
@@ -56,7 +56,7 @@ The following script is needed to generate new course names automatically
 
 function auto_names(year) {
 	if (year != '' && year != 0) {
-		<?php foreach($archive->getCourses() as $key => $course){if(strpos_array($course->fullname,array('[SP','[SA','[FS','[HS'))){?> 
+		<?php foreach($archive->getCourses() as $key => $course){if(strpos_array($course->fullname,array('[SP','[SA','[FS','[HS','[SS','[AS'))){?> 
 			document.getElementById(<?php echo "'approved_course_names[".$key."]'";?>).value = "<?php echo str_replace('"','\"',substr($course->fullname, 0, (strlen($course->fullname)-3)));?>"+year+"]";
 			document.getElementById(<?php echo "'approved_courses[".$key."]'";?>).checked = false;
 		<?php } else {?>
