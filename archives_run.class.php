@@ -227,7 +227,7 @@ DISPLAY FUNCTIONS
 			echo "</td>";
 
 			echo "<td ".$style.">";
-			echo "<a href=\"" . $CFG->wwwroot ."/course/edit.php?id=". $course->id . "\">" . $course->fullname . "</a>";
+			echo "<a href=\"" . $CFG->wwwroot ."/course/view.php?id=". $course->id . "\">" . $course->fullname . "</a>";
 			echo "</td>";
 
 			if ($this->isCourseStateOK($course) == TRUE) {
