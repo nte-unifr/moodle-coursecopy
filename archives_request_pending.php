@@ -14,6 +14,7 @@ define('TEACHERROLES', '3,4,9');
 require_once('../../config.php');
 require_once($CFG->dirroot . '/course/externallib.php');
 require_once("archives_request_pending.class.php");
+require_once($CFG->libdir.'/coursecatlib.php');
 
 //global $DB;
 
@@ -59,6 +60,9 @@ if (!empty($approved_courses)) {
 				$prev_archived_course = $DB->get_record("nte_archives", array("archivedcourseid" => $key));
 				if ($prev_archived_course) {
 					$new_category = $prev_archived_course->archivedcategoryid;
+					if (!coursecat::get($new_category,IGNORE_MISSING)) {
+							$new_category = $CFG->archive_category;
+					}
 				}
 			}
 
