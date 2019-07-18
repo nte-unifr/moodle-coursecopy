@@ -13,5 +13,5 @@
 	$string['backtocourse']= 'Annuler et revenir au cours';
 	$string['feedback_ok'] = 'Votre requête a été enregistrée. Vous recevrez prochainement un courriel avec l\'adresse de votre nouveau cours.';
 	$string['feedback_not_ok'] = 'Votre requête n\'a pas pu été enregistrée. Contactez les administrateurs de Moodle : moodle@unifr.ch.';
-	
+	$string['ask_for_copy'] = 'Demander une copie';
 ?>

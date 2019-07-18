@@ -13,5 +13,6 @@
 	$string['backtocourse']= 'Annullieren und zurück zum Kurs';
 	$string['feedback_ok'] = 'Ihr Kursantrag wurde erfolgreich gespeichert. In Kürze erhalten Sie per E-Mail eine Benachrichtigung mit der Adresse des neuen Kurses.';
 	$string['feedback_not_ok'] = 'Ihr Kursantrag konnte nicht gespeichert werden. Kontaktieren Sie bitte die Administratoren von Moodle : moodle@unifr.ch.';
-	
+	$string['ask_for_copy'] = 'Kurs-Kopie anfragen';
+
 ?>
