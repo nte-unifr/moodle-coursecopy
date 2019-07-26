@@ -144,7 +144,7 @@ FUNCTIONS
 		echo "</table>";
 		// End table
 
-		echo "<input type='submit' name'submit_btn' value='Manage selected courses'>";
+		echo "<br><input type='submit' name'submit_btn' value='Manage selected courses'>";
 
 		// End form
 		echo "</form>";
@@ -303,7 +303,7 @@ FUNCTIONS
 		}
 
 		// Back button
-		echo '<input type="button" onClick="window.location.href=\''.$link.'\'" value="Back">';
+		echo '<br><input type="button" onClick="window.location.href=\''.$link.'\'" value="Back">';
 
 		// Save $debug_result into file
 		if ($debug_into_file == "on") {
