@@ -84,8 +84,6 @@ FUNCTIONS
 		echo "<th>Approve</th>";
 		echo "<th>New name</th>";
 		echo "<th>Delete</th>";
-		echo "<th></th>";
-		echo "<th></th>";
 		echo "</tr>";
 		// End table header
 
@@ -130,22 +128,11 @@ FUNCTIONS
 			echo "</td>";
 
 			echo "<td ".$style.">";
-			echo "<input type='text' style='width:400px; height:25px;' id='approved_course_names[".$course->id."]' name='approved_course_names[".$course->id."]' onChange='auto_checkbox(".$course->id.")'>";
+			echo "<input type='text' style='width:500px; height:25px;' id='approved_course_names[".$course->id."]' name='approved_course_names[".$course->id."]' onChange='auto_checkbox(".$course->id.")'>";
 			echo "</td>";
 
 			echo "<td ".$style." style='width:50px; text-align:center;'>";
 			echo "<input type='checkbox' name='deleted_courses[".$course->id."]' value='deleted_courses[".$course->id."]'>";
-			echo "</td>";
-
-			echo "<td ".$style.">";
-			echo "<a href='".$CFG->wwwroot."/backup/backup.php?id=".$course->id."'><img src='".$CFG->wwwroot."/theme/image.php?theme=standard&image=t%2Fbackup&rev=220'/></a>";
-			echo "</td>";
-
-			$context = context_course::instance($course->id);
-
-			echo "<td ".$style.">";
-			echo "<a href='".$CFG->wwwroot."/backup/restorefile.php?contextid=".$context->id."'><img src='".$CFG->wwwroot."/theme/image.php?theme=standard&image=t%2Frestore&rev=220'/></a>";
-
 			echo "</td>";
 
 			echo "</tr>";
