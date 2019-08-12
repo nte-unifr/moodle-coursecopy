@@ -15,6 +15,7 @@ define('PAGE_TITLE', 'Archive/move courses');
 require_once('../../config.php');
 //require_once($CFG->dirroot . '/backup/util/includes/backup_includes.php');
 require_once('archives_run.class.php');
+require_once($CFG->dirroot.'/course/lib.php');
 
 /*
 Style for the table :

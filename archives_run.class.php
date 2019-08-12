@@ -268,6 +268,7 @@ DISPLAY FUNCTIONS
 		echo "The following courses have been successfully archived/moved to category ".$this->course_category_id." :<br/>";
 		echo "<ul>";
 
+		$courseids = array();
 		foreach ($rs as $key => $r) {
 			$course = $DB->get_record("course", array("id" => $key));
 
@@ -287,12 +288,13 @@ DISPLAY FUNCTIONS
 			UPDATE the course to archive/move with category
 			into the course table of the database.
 			*/
-			$course->category = $this->course_category_id;
-			$update_result = $DB->update_record('course', $course);
+			/*$course->category = $this->course_category_id;
+			$update_result = $DB->update_record('course', $course);*/
 
 			echo "<li>".$course->fullname."</li>";
-
+			$courseids[] = $course->id;
 		}
+		move_courses($courseids,$this->course_category_id);
 
 		echo "</ul>";
 
