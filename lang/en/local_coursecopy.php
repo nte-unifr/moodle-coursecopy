@@ -14,5 +14,5 @@
 	$string['backtocourse']= 'Cancel and back to course';
 	$string['feedback_ok'] = 'Your request has been successfully saved. You will soon recieve an email containing a link to your new course.';
 	$string['feedback_not_ok'] = 'Your request could not be saved. Please refer to an administrator of Moodle : moodle@unifr.ch.';
-	$string['ask_for_copy'] = 'Ask for a copie';
+	$string['ask_for_copy'] = 'Ask for a copy';
 ?>
