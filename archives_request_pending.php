@@ -7,9 +7,7 @@ Date last modification : 	23.05.2012
 Description :				archives_request_pending.php file
 */
 define('PAGE_TITLE', 'Moodle 2.0 Test @ NTE');
-define('COURSE_CONTEXT_LEVEL', 50);
-define('TEACHER_ROLE_ID', 3);
-define('TEACHERROLES', '3,4,9');
+define('TEACHERROLES', '3,4');
 
 require_once('../../config.php');
 require_once($CFG->dirroot . '/course/externallib.php');
@@ -122,27 +120,20 @@ if (!empty($approved_courses)) {
 			else {
 				$errors[] = 'Aucun plugin d\'inscription manuelle n\'a été trouvé dans le cours originel; aucun enseignant n\'a été réinscrit.';
 			}
-			// now, let's figure out who was enrolled...
-			$enrolled_users = $DB->get_records('user_enrolments', array('enrolid' => $enrol->id));
 			$course_context = context_course::instance($key);
-			// ...and who among these are teachers
-			$teachers = array();
-			foreach ($enrolled_users as $enrolled_user) {
-				$teachers[] = $DB->get_records_sql("SELECT * FROM {role_assignments} WHERE userid = {$enrolled_user->userid} AND roleid IN (".TEACHERROLES.") AND contextid = {$course_context->id};");
-			}
+			$teachers = $DB->get_records_sql("SELECT * FROM {role_assignments} WHERE roleid IN (".TEACHERROLES.") AND contextid = {$course_context->id};");
 			if (count($teachers)) {
 		//         $errors[] = 'ct='.count($teachers);
 		//         $errors[] = '<pre>'.print_r($teachers, true).'</pre>';
 				require_once($CFG->dirroot . '/enrol/manual/lib.php');
 				$enrol_manual_instance = new enrol_manual_plugin();
 				foreach ($teachers as $teacher) {
-					$role_assignment = array_pop($teacher);
+					$role_assignment = $teacher;
 					if (!is_object($role_assignment)) {
                         continue;
                     }
 					$enrol_manual_instance->enrol_user($newenrol, $role_assignment->userid, $role_assignment->roleid);
 				}
-                $enrol_manual_instance->enrol_user($newenrol, $userto->id, $role_assignment->roleid);
 			}
 			else {
 				$errors[] = 'Aucun enseignant à réinscrire trouvé.';
