@@ -64,7 +64,7 @@ if (!empty($approved_courses)) {
 				}
 			}
 
-			$new_shortname = $courses_to_duplicate[$key]->shortname." [".date('Y-m-d H:i:s', time())."]";
+			$new_shortname = substr($courses_to_duplicate[$key]->shortname,0,100)." [".date('Y-m-d H:i:s', time())."]";
 			$new_fullname = $approved_course_names[$key];
 
 			$options = array(
