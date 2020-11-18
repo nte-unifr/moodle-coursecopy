@@ -82,7 +82,7 @@ FUNCTIONS
 		echo "<th>User</th>";
 		echo "<th>Comment</th>";
 		echo "<th>Approve</th>";
-		echo "<th>New name</th>";
+		echo "<th>Full name / short name</th>";
 		echo "<th>Delete</th>";
 		echo "</tr>";
 		// End table header
@@ -128,7 +128,9 @@ FUNCTIONS
 			echo "</td>";
 
 			echo "<td ".$style.">";
-			echo "<input type='text' style='width:500px; height:25px;' id='approved_course_names[".$course->id."]' name='approved_course_names[".$course->id."]' onChange='auto_checkbox(".$course->id.")'>";
+			echo "<input type='text' style='width:500px; height:25px;' id='approved_course_fullnames[".$course->id."]' name='approved_course_fullnames[".$course->id."]' onChange='auto_checkbox(".$course->id.")'>";
+			echo "<br>";
+			echo "<input type='text' style='width:500px; height:25px;' id='approved_course_shortnames[".$course->id."]' name='approved_course_shortnames[".$course->id."]' value='" . substr($course->shortname,0,100) . " [".date('Y-m-d H:i:s', time())."]'>";
 			echo "</td>";
 
 			echo "<td ".$style." style='width:50px; text-align:center;'>";

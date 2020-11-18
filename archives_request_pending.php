@@ -22,7 +22,8 @@ require_capability('moodle/site:approvecourse', context_system::instance());
 // Setting parameters
 $requester_ids = optional_param_array('requester_id', NULL, PARAM_RAW);
 $approved_courses =	optional_param_array('approved_courses', NULL, PARAM_RAW);
-$approved_course_names = optional_param_array('approved_course_names', NULL, PARAM_RAW);
+$approved_course_fullnames = optional_param_array('approved_course_fullnames', NULL, PARAM_RAW);
+$approved_course_shortnames = optional_param_array('approved_course_shortnames', NULL, PARAM_RAW);
 $deleted_courses =	optional_param_array('deleted_courses', NULL, PARAM_RAW);
 $session_year =	optional_param('session_year', '', PARAM_CLEANHTML);
 $debug_into_file = optional_param('debug', '', PARAM_CLEANHTML);
@@ -46,7 +47,7 @@ $errors = array();
 
 if (!empty($approved_courses)) {
 	foreach($approved_courses as $key => $approved_course) {
-		if ($approved_course_names[$key] <> '') {
+		if ($approved_course_fullnames[$key] <> '') {
 
             $userto = $requesters[$key];
 
@@ -64,8 +65,8 @@ if (!empty($approved_courses)) {
 				}
 			}
 
-			$new_shortname = substr($courses_to_duplicate[$key]->shortname,0,100)." [".date('Y-m-d H:i:s', time())."]";
-			$new_fullname = $approved_course_names[$key];
+			$new_shortname = $approved_course_shortnames[$key];
+			$new_fullname = $approved_course_fullnames[$key];
 
 			$options = array(
 				array ('name' => 'activities', 'value' => 1),

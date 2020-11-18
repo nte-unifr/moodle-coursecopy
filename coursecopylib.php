@@ -43,7 +43,7 @@ Styles and scripts (javascript) :
 I did not wanted to screw up some moodle CSS or JS files, so I hardcoded it... sorry
 */
 echo "<style>#archive_table{border:solid 1px #000;}#archive_table th {text-align:left;background-color:#F0F0F0;border-bottom:solid 1px #000;}#archive_table td.odd{background-color:#FFF;}#archive_table td.even{background-color:#F0F0F0;}</style>";
-echo "<script language='javascript'>function auto_checkbox(key){if(document.getElementById('approved_course_names['+key+']').value != '') document.getElementById('approved_courses['+key+']').checked = true; else document.getElementById('approved_courses['+key+']').checked = false;}</script>";
+echo "<script language='javascript'>function auto_checkbox(key){if(document.getElementById('approved_course_fullnames['+key+']').value != '') document.getElementById('approved_courses['+key+']').checked = true; else document.getElementById('approved_courses['+key+']').checked = false;}</script>";
 
 ?>
 
@@ -56,19 +56,19 @@ The following script is needed to generate new course names automatically
 
 function auto_names(year) {
 	if (year != '' && year != 0) {
-		<?php foreach($archive->getCourses() as $key => $course){if(strpos_array($course->fullname,array('[SP','[SA','[FS','[HS','[SS','[AS'))){?> 
-			document.getElementById(<?php echo "'approved_course_names[".$key."]'";?>).value = "<?php echo str_replace('"','\"',substr($course->fullname, 0, (strlen($course->fullname)-3)));?>"+year+"]";
+		<?php foreach($archive->getCourses() as $key => $course){if(strpos_array($course->fullname,array('[SP','[SA','[FS','[HS','[SS','[AS'))){?>
+			document.getElementById(<?php echo "'approved_course_fullnames[".$key."]'";?>).value = "<?php echo str_replace('"','\"',substr($course->fullname, 0, (strlen($course->fullname)-3)));?>"+year+"]";
 			document.getElementById(<?php echo "'approved_courses[".$key."]'";?>).checked = false;
 		<?php } else {?>
-			document.getElementById(<?php echo "'approved_course_names[".$key."]'";?>).value = "<?php echo str_replace('"','\"',$course->fullname);?>";
-			document.getElementById(<?php echo "'approved_course_names[".$key."]'";?>).style.background = "#FF0000";
+			document.getElementById(<?php echo "'approved_course_fullnames[".$key."]'";?>).value = "<?php echo str_replace('"','\"',$course->fullname);?>";
+			document.getElementById(<?php echo "'approved_course_fullnames[".$key."]'";?>).style.background = "#FF0000";
 			document.getElementById(<?php echo "'approved_courses[".$key."]'";?>).checked = false;
 		<?php }}?>
 	} else {
 		<?php foreach($archive->getCourses() as $key => $course){?>
-			document.getElementById(<?php echo "'approved_course_names[".$key."]'";?>).value = '';
+			document.getElementById(<?php echo "'approved_course_fullnames[".$key."]'";?>).value = '';
 			document.getElementById(<?php echo "'approved_courses[".$key."]'";?>).checked = false;
-			document.getElementById(<?php echo "'approved_course_names[".$key."]'";?>).style.background = "#FFFFFF";
+			document.getElementById(<?php echo "'approved_course_fullnames[".$key."]'";?>).style.background = "#FFFFFF";
 		<?php }?>
 	}
 }
