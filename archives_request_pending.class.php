@@ -130,7 +130,7 @@ FUNCTIONS
 			echo "<td ".$style.">";
 			echo "<input type='text' style='width:500px; height:25px;' id='approved_course_fullnames[".$course->id."]' name='approved_course_fullnames[".$course->id."]' onChange='auto_checkbox(".$course->id.")'>";
 			echo "<br>";
-			echo "<input type='text' style='width:500px; height:25px;' id='approved_course_shortnames[".$course->id."]' name='approved_course_shortnames[".$course->id."]' value='" . substr($course->shortname,0,100) . " [".date('Y-m-d H:i:s', time())."]'>";
+			echo "<input type='text' style='width:500px; height:25px;' id='approved_course_shortnames[".$course->id."]' name='approved_course_shortnames[".$course->id."]' value=\"" . str_replace('"','&quot;',substr($course->shortname,0,100)) . " [".date('Y-m-d H:i:s', time())."]\">";
 			echo "</td>";
 
 			echo "<td ".$style." style='width:50px; text-align:center;'>";
